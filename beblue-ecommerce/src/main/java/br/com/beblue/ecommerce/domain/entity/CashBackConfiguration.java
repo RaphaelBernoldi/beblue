@@ -1,5 +1,6 @@
 package br.com.beblue.ecommerce.domain.entity;
 
+import java.io.Serializable;
 import java.time.DayOfWeek;
 
 import javax.persistence.Column;
@@ -17,7 +18,12 @@ import br.com.beblue.ecommerce.domain.enumeration.EnumGenero;
 @Entity
 @Table(name = "CASH_BACK_CONFIGURATION")
 @SequenceGenerator(allocationSize = 1, name = "seqCashBackConfiguration" , sequenceName = "SEQ_CASH_BACK_CONFIGURATION")
-public class CashBackConfiguration {
+public class CashBackConfiguration implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "ID_CASHBACK")

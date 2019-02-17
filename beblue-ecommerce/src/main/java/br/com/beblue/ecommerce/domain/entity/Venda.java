@@ -1,5 +1,6 @@
 package br.com.beblue.ecommerce.domain.entity;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
@@ -20,7 +21,9 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "VENDA")
 @SequenceGenerator(allocationSize = 1, name = "seqVenda" , sequenceName = "SEQ_VENDA")
-public class Venda {
+public class Venda implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "ID_VENDA")

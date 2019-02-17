@@ -1,5 +1,7 @@
 package br.com.beblue.ecommerce.domain.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -16,7 +18,12 @@ import br.com.beblue.ecommerce.domain.enumeration.EnumGenero;
 @Entity
 @Table(name = "DISCO")
 @SequenceGenerator(allocationSize = 1, name = "seqDisco" , sequenceName = "SEQ_DISCO")
-public class Disco {
+public class Disco implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "ID_DISCO")

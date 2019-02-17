@@ -1,5 +1,7 @@
 package br.com.beblue.ecommerce.domain.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +13,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "CLIENTE")
 @SequenceGenerator(allocationSize = 1, name = "seqCliente" , sequenceName = "SEQ_CLIENTE")
-public class Cliente {
+public class Cliente implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "ID_CLIENTE")
