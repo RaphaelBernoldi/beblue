@@ -42,10 +42,9 @@ public class ApplicationStartUp  implements ApplicationListener<ApplicationReady
 													.buscaAlbums(genero
 														   , spotifyService.geraToken());
 				discoService.salvaDiscos(albumsSpotify.getAlbums(), genero);
-				LOGGER.info("[DISCOS][SALVOS]");
-				
-				
+				LOGGER.info("[DISCOS][SALVOS][" + genero +"]");
 			});
+			LOGGER.info("[BEBLUE][CARGA][FINALIZADA]");
 	}
 
 }

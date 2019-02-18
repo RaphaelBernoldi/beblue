@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.beblue.ecommerce.business.DiscoService;
 import br.com.beblue.ecommerce.domain.dto.spotify.AlbumsDTO;
-import br.com.beblue.ecommerce.domain.dto.spotify.ResponseAlbumDTO;
 import br.com.beblue.ecommerce.domain.entity.Disco;
 import br.com.beblue.ecommerce.domain.enumeration.EnumGenero;
 import br.com.beblue.ecommerce.repository.DiscoRepository;
@@ -32,7 +31,7 @@ public class DiscoServiceImpl implements DiscoService {
 	@Override
 	public List<Disco> buscaDiscos(EnumGenero genero) {
 		LOGGER.info("[BUSCA][DISCO][GENERO][{}]", genero);
-		return null;
+		return discoRepository.findByGenero(genero);
 	}
 	
 	@Override
