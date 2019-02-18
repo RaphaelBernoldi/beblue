@@ -33,28 +33,53 @@ public class Disco implements Serializable{
 	@Column(name = "NOME_ARTISTA")
 	private String nomeArtista;
 	
+	@Column(name = "NOME_ALBUM")
+	private String nomeAlbum;
+	
 	@Column(name = "GENERO")
 	@Enumerated(EnumType.STRING)
 	private EnumGenero genero;
 	
+	@Column(name = "TOTAL_MUSICAS")
+	private Integer totalMusicas;
+
 	public Long getIdDisco() {
 		return idDisco;
 	}
+
 	public void setIdDisco(Long idDisco) {
 		this.idDisco = idDisco;
 	}
+
 	public String getNomeArtista() {
 		return nomeArtista;
 	}
+
 	public void setNomeArtista(String nomeArtista) {
 		this.nomeArtista = nomeArtista;
 	}
+
+	public String getNomeAlbum() {
+		return nomeAlbum;
+	}
+
+	public void setNomeAlbum(String nomeAlbum) {
+		this.nomeAlbum = nomeAlbum;
+	}
+
 	public EnumGenero getGenero() {
 		return genero;
 	}
+
 	public void setGenero(EnumGenero genero) {
 		this.genero = genero;
 	}
-	
-	
+
+	public Integer getTotalMusicas() {
+		return totalMusicas;
+	}
+
+	public void setTotalMusicas(Integer totalMusicas) {
+		this.totalMusicas = totalMusicas;
+	}
 }

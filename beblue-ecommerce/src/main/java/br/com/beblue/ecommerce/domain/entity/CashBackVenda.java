@@ -13,9 +13,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CASH_BACK")
-@SequenceGenerator(allocationSize = 1, name = "seqCashBack" , sequenceName = "SEQ_CASH_BACK")
-public class CashBack implements Serializable{
+@Table(name = "CASH_BACK_VENDA")
+@SequenceGenerator(allocationSize = 1, name = "seqCashBackVenda" , sequenceName = "SEQ_CASH_BACK_VENDA")
+public class CashBackVenda implements Serializable{
 
 	/**
 	 * 
@@ -23,39 +23,39 @@ public class CashBack implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "ID_CASHBACK")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqCashBack")
-	private Long idCashBack;
+	@Column(name = "ID_CASHBACK_VENDA")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqCashBackVenda")
+	private Long idCashBackVenda;
 	
 	@ManyToOne
-	@JoinColumn(name = "ID_CLIENTE")
-	private Cliente cliente;
+	@JoinColumn(name = "ID_VENDA")
+	private Venda venda;
 	
 	@Column(name = "VALOR")
 	private Double valor;
 
-	public Long getIdCashBack() {
-		return idCashBack;
+	public Long getIdCashBackVenda() {
+		return idCashBackVenda;
 	}
-	public void setIdCashBack(Long idCashBack) {
-		this.idCashBack = idCashBack;
+
+	public void setIdCashBackVenda(Long idCashBackVenda) {
+		this.idCashBackVenda = idCashBackVenda;
 	}
-	public Cliente getCliente() {
-		return cliente;
+
+	public Venda getVenda() {
+		return venda;
 	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+
+	public void setVenda(Venda venda) {
+		this.venda = venda;
 	}
+
 	public Double getValor() {
 		return valor;
 	}
+
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
-	
-	
-	
-	
-	
-	
+
 }
