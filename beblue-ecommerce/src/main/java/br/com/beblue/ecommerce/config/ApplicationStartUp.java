@@ -1,5 +1,7 @@
 package br.com.beblue.ecommerce.config;
 
+import java.util.Arrays;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
+import br.com.beblue.ecommerce.business.DiscoService;
 import br.com.beblue.ecommerce.business.SpotifyService;
 import br.com.beblue.ecommerce.domain.dto.spotify.ResponseAlbumDTO;
 import br.com.beblue.ecommerce.domain.enumeration.EnumGenero;
@@ -24,13 +27,25 @@ public class ApplicationStartUp  implements ApplicationListener<ApplicationReady
 	@Autowired
 	private SpotifyService spotifyService;
 	
+	
+	@Autowired
+	private DiscoService discoService;
+	
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent arg0) {
 		LOGGER.info("[BEBLUE][UP][INICIALIZANDO][CARGA]");
-		ResponseAlbumDTO response = spotifyService
-										.buscaAlbums(EnumGenero.ROCK
-												   , spotifyService.geraToken());
-		System.out.println(response);
+			Arrays
+				.asList(EnumGenero.values())
+				.forEach(genero -> {
+				
+				ResponseAlbumDTO albumsSpotify = spotifyService
+													.buscaAlbums(genero
+														   , spotifyService.geraToken());
+				discoService.salvaDiscos(albumsSpotify.getAlbums(), genero);
+				LOGGER.info("[DISCOS][SALVOS]");
+				
+				
+			});
 	}
 
 }

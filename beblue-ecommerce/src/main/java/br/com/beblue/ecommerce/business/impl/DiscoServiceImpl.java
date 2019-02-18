@@ -1,5 +1,6 @@
 package br.com.beblue.ecommerce.business.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.beblue.ecommerce.business.DiscoService;
+import br.com.beblue.ecommerce.domain.dto.spotify.AlbumsDTO;
+import br.com.beblue.ecommerce.domain.dto.spotify.ResponseAlbumDTO;
 import br.com.beblue.ecommerce.domain.entity.Disco;
 import br.com.beblue.ecommerce.domain.enumeration.EnumGenero;
 import br.com.beblue.ecommerce.repository.DiscoRepository;
@@ -30,6 +33,24 @@ public class DiscoServiceImpl implements DiscoService {
 	public List<Disco> buscaDiscos(EnumGenero genero) {
 		LOGGER.info("[BUSCA][DISCO][GENERO][{}]", genero);
 		return null;
+	}
+	
+	@Override
+	public List<Disco>salvaDiscos(AlbumsDTO albumsDTO, EnumGenero genero){
+		List<Disco>discos = new ArrayList<>();
+		albumsDTO
+			.getItems()
+			.forEach(albumSpotify -> {
+				Disco disco = new Disco();
+				disco.setGenero(genero);
+				disco.setNomeAlbum(albumSpotify.getName());
+				disco.setNomeArtista(albumSpotify.getArtists().get(0).getName());
+				disco.setTotalMusicas(albumSpotify.getTotalTracks());
+				discos.add(disco);
+			
+		});
+		
+		return discoRepository.saveAll(discos);
 	}
 
 }

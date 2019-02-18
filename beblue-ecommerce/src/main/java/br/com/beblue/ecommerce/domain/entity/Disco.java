@@ -42,7 +42,7 @@ public class Disco implements Serializable{
 	
 	@Column(name = "TOTAL_MUSICAS")
 	private Integer totalMusicas;
-
+	
 	public Long getIdDisco() {
 		return idDisco;
 	}
