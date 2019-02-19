@@ -1,6 +1,7 @@
 package br.com.beblue.ecommerce.domain.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
 
@@ -17,6 +18,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "VENDA")
@@ -25,11 +29,14 @@ public class Venda implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@ApiModelProperty(hidden=true)
 	@Id
 	@Column(name = "ID_VENDA")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqVenda")
 	private Long idVenda;
 	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	@ApiModelProperty(hidden=true)
 	@Temporal(TemporalType.DATE)
 	@Column(name = "DATA_VENDA")
 	private Calendar dataVenda;
@@ -40,6 +47,10 @@ public class Venda implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "ID_CLIENTE")
 	private Cliente cliente;
+	
+	@ApiModelProperty(hidden=true)
+	@Column(name = "valor_venda")
+	private BigDecimal valor;
 	
 	public Long getIdVenda() {
 		return idVenda;
@@ -65,6 +76,14 @@ public class Venda implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
+	public BigDecimal getValor() {
+		if(valor == null) {
+			valor = BigDecimal.ZERO;
+		}
+		return valor;
+	}
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
 	
 }

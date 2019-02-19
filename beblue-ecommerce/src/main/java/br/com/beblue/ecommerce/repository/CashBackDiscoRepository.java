@@ -3,9 +3,9 @@ package br.com.beblue.ecommerce.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.beblue.ecommerce.domain.entity.CashBackCliente;
+import br.com.beblue.ecommerce.domain.entity.CashBackDisco;
 
 @Repository
-public interface CashBackClienteRepository extends JpaRepository<CashBackCliente, Long>{
+public interface CashBackDiscoRepository extends JpaRepository<CashBackDisco, Long>{
 
 }

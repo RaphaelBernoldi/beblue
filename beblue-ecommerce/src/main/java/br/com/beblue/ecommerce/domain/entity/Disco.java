@@ -1,6 +1,7 @@
 package br.com.beblue.ecommerce.domain.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,6 +44,9 @@ public class Disco implements Serializable{
 	@Column(name = "TOTAL_MUSICAS")
 	private Integer totalMusicas;
 	
+	@Column(name = "valor_disco")
+	private BigDecimal valorDisco;
+	
 	public Long getIdDisco() {
 		return idDisco;
 	}
@@ -82,4 +86,13 @@ public class Disco implements Serializable{
 	public void setTotalMusicas(Integer totalMusicas) {
 		this.totalMusicas = totalMusicas;
 	}
+
+	public BigDecimal getValorDisco() {
+		return valorDisco;
+	}
+
+	public void setValorDisco(BigDecimal valorDisco) {
+		this.valorDisco = valorDisco;
+	}
+	
 }

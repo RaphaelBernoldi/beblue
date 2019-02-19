@@ -1,6 +1,7 @@
 package br.com.beblue.ecommerce.domain.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.DayOfWeek;
 
 import javax.persistence.Column;
@@ -31,7 +32,7 @@ public class CashBackConfiguration implements Serializable {
 	private Long idCashBack;
 	
 	@Column(name = "VALOR")
-	private Long valor;
+	private BigDecimal valor;
 	
 	@Column(name = "DIA_SEMANA")
 	@Enumerated(EnumType.STRING)
@@ -41,16 +42,26 @@ public class CashBackConfiguration implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private EnumGenero genero;
 	
+	
+	
+	public CashBackConfiguration() {}
+	
+	public CashBackConfiguration(BigDecimal valor, DayOfWeek diaSemana, EnumGenero genero) {
+		this.valor = valor;
+		this.diaSemana = diaSemana;
+		this.genero = genero;
+	}
+	
 	public Long getIdCashBack() {
 		return idCashBack;
 	}
 	public void setIdCashBack(Long idCashBack) {
 		this.idCashBack = idCashBack;
 	}
-	public Long getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
-	public void setValor(Long valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 	public DayOfWeek getDiaSemana() {

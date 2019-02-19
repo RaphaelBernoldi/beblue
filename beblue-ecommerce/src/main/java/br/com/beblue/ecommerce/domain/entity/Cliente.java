@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "CLIENTE")
@@ -20,6 +23,7 @@ public class Cliente implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@ApiModelProperty(hidden=true)
 	@Id
 	@Column(name = "ID_CLIENTE")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqCliente")
@@ -28,6 +32,7 @@ public class Cliente implements Serializable{
 	@Column(name = "NOME")
 	private String nome;
 	
+	@NotNull(message = "CPF do cliente é obrigatório")
 	@Column(name = "CPF")
 	private String cpf;
 	

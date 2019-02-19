@@ -9,6 +9,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
+import br.com.beblue.ecommerce.business.CashBackConfigurationService;
 import br.com.beblue.ecommerce.business.DiscoService;
 import br.com.beblue.ecommerce.business.SpotifyService;
 import br.com.beblue.ecommerce.domain.dto.spotify.ResponseAlbumDTO;
@@ -27,13 +28,15 @@ public class ApplicationStartUp  implements ApplicationListener<ApplicationReady
 	@Autowired
 	private SpotifyService spotifyService;
 	
-	
 	@Autowired
 	private DiscoService discoService;
 	
+	@Autowired
+	private CashBackConfigurationService cashBackConfigurationService; 
+	
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent arg0) {
-		LOGGER.info("[BEBLUE][UP][INICIALIZANDO][CARGA]");
+		LOGGER.info("[BEBLUE][CARGA][DISCO][INICIALIZADO]");
 			Arrays
 				.asList(EnumGenero.values())
 				.forEach(genero -> {
@@ -44,7 +47,10 @@ public class ApplicationStartUp  implements ApplicationListener<ApplicationReady
 				discoService.salvaDiscos(albumsSpotify.getAlbums(), genero);
 				LOGGER.info("[DISCOS][SALVOS][" + genero +"]");
 			});
-			LOGGER.info("[BEBLUE][CARGA][FINALIZADA]");
+			LOGGER.info("[BEBLUE][CARGA][DISCO][FINALIZADA]");
+			LOGGER.info("[BEBLUE][CARGA][CASHBACK_CONFIGURATION][INICIALIZADO]");
+			cashBackConfigurationService.criaConfiguracoes();
+			LOGGER.info("[BEBLUE][CARGA][CASHBACK_CONFIGURATION][FINALIZADA]");
 	}
 
 }

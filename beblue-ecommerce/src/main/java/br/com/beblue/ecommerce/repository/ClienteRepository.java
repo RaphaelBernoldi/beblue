@@ -7,5 +7,7 @@ import br.com.beblue.ecommerce.domain.entity.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long>{
+	
+	Cliente findByCpf(String cpf);
 
 }
